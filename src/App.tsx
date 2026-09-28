@@ -19,7 +19,7 @@ function App() {
       <Nav />
       <Banner />
       <Suspense fallback={<div>Loading....</div>}>
-        <Technologies techpromise={techPromise} />
+        <Technologies techPromise={techPromise} />
       </Suspense>
     </div>
   );
