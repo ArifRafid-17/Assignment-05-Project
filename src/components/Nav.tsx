@@ -57,13 +57,13 @@ const Nav = () => {
         <div className="flex items-center gap-2 md:gap-5 justify-self-end">
           <button
             type="button"
-            className="text-[11px] md:text-[13px] font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-150"
+            className="text-[11px] md:text-[13px] font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-150 cursor-pointer"
           >
             Sign In
           </button>
           <button
             type="button"
-            className="text-[11px] md:text-[13px] font-semibold text-white bg-pink-600 hover:bg-pink-700 px-3 py-1.5 md:px-5 md:py-2 rounded-lg transition-all duration-150 shadow-sm active:scale-95"
+            className="text-[11px] md:text-[13px] font-semibold text-white bg-pink-600 hover:bg-pink-700 px-3 py-1.5 md:px-5 md:py-2 rounded-lg transition-all duration-150 shadow-sm active:scale-95 cursor-pointer"
           >
             Sign Up
           </button>

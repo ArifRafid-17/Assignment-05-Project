@@ -84,7 +84,7 @@ const SelectedCard = ({ selectedTechs, setSelectedTechs }: Props) => {
                 <button
                   type="button"
                   onClick={() => handleRemove(tech)}
-                  className="text-lg text-slate-400 hover:text-slate-700"
+                  className="text-lg text-slate-400 hover:text-slate-700 cursor-pointer"
                   aria-label={`Remove ${tech.name}`}
                 >
                   ✕
@@ -96,7 +96,7 @@ const SelectedCard = ({ selectedTechs, setSelectedTechs }: Props) => {
           <button
             type="button"
             onClick={handleRemoveAll}
-            className="mt-6 w-full rounded-lg border border-red-200 py-2 text-sm font-semibold text-red-600 hover:bg-red-50"
+            className="mt-6 w-full rounded-lg border border-red-200 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 cursor-pointer"
           >
             Remove All
           </button>
