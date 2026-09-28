@@ -9,6 +9,7 @@
 - **Vite** – for fast development and bundling
 - **Tailwind CSS 4** – for utility-first styling
 - **daisyUI** – for pre-built Tailwind components (cards, badges, buttons)
+- **React-Toastify** – for using the side toast pop-ups
 
 ## ✨ Features
 
