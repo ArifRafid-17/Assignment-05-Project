@@ -1,10 +1,11 @@
 import React, { use } from 'react';
 import type { TechType } from "../types";
+import TechCard from './TechCard';
 
 interface Props {
-    techPromise: TechType;
+    techPromise: Promise <TechType[]>;
 }
-const Technologies = ({techPromise}: props) => {
+const Technologies = ({techPromise}: Props) => {
     const technologies = use(techPromise)
 
     return (
@@ -16,7 +17,12 @@ const Technologies = ({techPromise}: props) => {
 
             <div>
                 {
-                    
+                   technologies.map( (tech : TechType , ind: number )=>{
+
+                     return (
+                        <TechCard tech = {tech} key ={ind}/>
+                     )
+                   })
                 }
             </div>
         </div>

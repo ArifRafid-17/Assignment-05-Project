@@ -5,16 +5,13 @@ import Banner from "./components/Banner";
 import Technologies from "./components/Technologies";
 import type { TechType } from "./types";
 
-const fetchData = async (): Promise<TechType[]> => {
+const fetchdata = async (): Promise<TechType[]> => {
   const res = await fetch("/data.json");
-  if (!res.ok) {
-    throw new Error(`Failed to load data: ${res.statusText}`);
-  }
-  return res.json();
+  const data = await res.json();
+  return data;
 };
 
-// Created once outside the render cycle
-const techPromise = fetchData();
+const techPromise = fetchdata();
 
 function App() {
   return (
@@ -22,7 +19,7 @@ function App() {
       <Nav />
       <Banner />
       <Suspense fallback={<div>Loading....</div>}>
-        <Technologies techPromise={techPromise} />
+        <Technologies techpromise={techPromise} />
       </Suspense>
     </div>
   );
