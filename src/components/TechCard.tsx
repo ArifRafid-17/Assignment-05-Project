@@ -1,7 +1,10 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { TechType } from "../types";
 
 interface Props {
   tech: TechType;
+  selectedTechs: TechType[];
+  setSelectedTechs: Dispatch<SetStateAction<TechType[]>>;
 }
 
 const badgeColors: Record<string, string> = {
@@ -18,9 +21,17 @@ const badgeColors: Record<string, string> = {
   Containers: "bg-sky-50 text-sky-500 border-sky-200",
 };
 
-const TechCard = ({ tech }: Props) => {
+const TechCard = ({ tech, selectedTechs, setSelectedTechs }: Props) => {
   const badgeStyle =
     badgeColors[tech.badge] || "bg-gray-50 text-gray-500 border-gray-200";
+
+  // check if this card is already in the stack
+  const isAdded = selectedTechs.some((item) => item.id === tech.id);
+
+  const handleAddToStack = () => {
+    if (isAdded) return;
+    setSelectedTechs([...selectedTechs, tech]);
+  };
 
   return (
     <div className="card bg-base-100 w-full border border-gray-200 shadow-sm">
@@ -56,8 +67,12 @@ const TechCard = ({ tech }: Props) => {
         </div>
 
         {/* Button */}
-        <button className="btn btn-neutral mt-4 w-full rounded-lg bg-slate-900 text-white">
-          Add to Stack
+        <button
+          onClick={handleAddToStack}
+          disabled={isAdded}
+          className="btn btn-neutral mt-4 w-full rounded-lg bg-slate-900 text-white disabled:bg-slate-300 disabled:text-slate-500"
+        >
+          {isAdded ? "Added" : "Add to Stack"}
         </button>
       </div>
     </div>
