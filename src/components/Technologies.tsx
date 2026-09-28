@@ -1,16 +1,19 @@
 import { use } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import type { TechType } from "../types";
 import TechCard from "./TechCard";
+import SelectedCard from "./selectedCard";
 
 interface Props {
   techPromise: Promise<TechType[]>;
+  selectedTechs: TechType[];
+  setSelectedTechs: Dispatch<SetStateAction<TechType[]>>;
 }
 
-const Technologies = ({ techPromise }: Props) => {
+const Technologies = ({ techPromise, selectedTechs, setSelectedTechs }: Props) => {
   const technologies = use(techPromise);
 
   return (
-    // px-4 on mobile, px-6 on tablet, px-8 on laptop
     <section
       id="technologies"
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 lg:pb-20"
@@ -28,11 +31,29 @@ const Technologies = ({ techPromise }: Props) => {
         </p>
       </div>
 
-      {/* Cards grid: 1 column on mobile, 2 on tablet, 3 on laptop */}
-      <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {technologies.map((tech: TechType, ind: number) => {
-          return <TechCard tech={tech} key={ind} />;
-        })}
+      {/* Mobile: stacked. Laptop: cards (3 cols) + Your Stack (1 col) */}
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-4">
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-2 lg:col-span-3 lg:grid-cols-3">
+          {technologies.map((tech: TechType) => {
+            return (
+              <TechCard
+                tech={tech}
+                key={tech.id}
+                selectedTechs={selectedTechs}
+                setSelectedTechs={setSelectedTechs}
+              />
+            );
+          })}
+        </div>
+
+        {/* Your Stack */}
+        <div className="lg:col-span-1 lg:sticky lg:top-24">
+          <SelectedCard
+            selectedTechs={selectedTechs}
+            setSelectedTechs={setSelectedTechs}
+          />
+        </div>
       </div>
     </section>
   );

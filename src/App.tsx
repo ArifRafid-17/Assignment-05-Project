@@ -1,5 +1,5 @@
 import "./App.css";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Nav from "./components/Nav";
 import Banner from "./components/Banner";
 import Technologies from "./components/Technologies";
@@ -14,12 +14,18 @@ const fetchdata = async (): Promise<TechType[]> => {
 const techPromise = fetchdata();
 
 function App() {
+  const [selectedTechs, setSelectedTechs] = useState<TechType[]>([]);
+
   return (
     <div>
       <Nav />
       <Banner />
       <Suspense fallback={<div>Loading....</div>}>
-        <Technologies techPromise={techPromise} />
+        <Technologies
+          techPromise={techPromise}
+          selectedTechs={selectedTechs}
+          setSelectedTechs={setSelectedTechs}
+        />
       </Suspense>
     </div>
   );
