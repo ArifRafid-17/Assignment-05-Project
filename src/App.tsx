@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Banner from "./components/Banner";
 import Technologies from "./components/Technologies";
 import type { TechType } from "./types";
+import Footer from "./components/Footer";
 
 const fetchdata = async (): Promise<TechType[]> => {
   const res = await fetch("/data.json");
@@ -47,6 +48,7 @@ function App() {
           setSelectedTechs={setSelectedTechs}
         />
       </Suspense>
+      <Footer/>
     </div>
   );
 }
