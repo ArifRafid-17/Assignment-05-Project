@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { TechType } from "../types";
+import { Bounce, toast } from "react-toastify";
 
 interface Props {
   selectedTechs: TechType[];
@@ -9,12 +10,34 @@ interface Props {
 const SelectedCard = ({ selectedTechs, setSelectedTechs }: Props) => {
   const isEmpty = selectedTechs.length === 0;
 
-  const handleRemove = (id: string) => {
-    setSelectedTechs(selectedTechs.filter((item) => item.id !== id));
+ const handleRemove = (tech: TechType) => {
+  setSelectedTechs(selectedTechs.filter((item) => item.id !== tech.id));
+    toast.info(`${tech.name} removed from your stack`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   const handleRemoveAll = () => {
     setSelectedTechs([]);
+    toast.error("All technologies removed", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (
@@ -60,7 +83,7 @@ const SelectedCard = ({ selectedTechs, setSelectedTechs }: Props) => {
 
                 <button
                   type="button"
-                  onClick={() => handleRemove(tech.id)}
+                  onClick={() => handleRemove(tech)}
                   className="text-lg text-slate-400 hover:text-slate-700"
                   aria-label={`Remove ${tech.name}`}
                 >

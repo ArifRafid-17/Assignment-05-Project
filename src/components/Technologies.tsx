@@ -2,7 +2,7 @@ import { use } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { TechType } from "../types";
 import TechCard from "./TechCard";
-import SelectedCard from "./selectedCard";
+import SelectedCard from "./SelectedCard";
 
 interface Props {
   techPromise: Promise<TechType[]>;
